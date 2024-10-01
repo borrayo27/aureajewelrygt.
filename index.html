@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style3.css">
+    <title>AUREAJEWELRYGT</title>
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #000000;
+        }
+
+        /* Cambia el color del título a blanco */
+        header h1 {
+            color: white;
+        }
+
+        /* Estilo de la barra de navegación */
+        nav {
+            background-color: #fff;
+            border-bottom: 2px solid black;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav ul li {
+            padding: 10px 15px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover {
+            color: blue;
+        }
+
+        /* Mensaje de envíos gratis */
+        .envio-gratis {
+            background-color: beige;
+            color: black;
+            text-align: center;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        #productos, #nosotros {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .producto {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Estilo del carrito */
+        .carrito-pequeño {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 10px;
+            cursor: pointer;
+            width: 100px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .carrito-grande {
+            width: 300px;
+            height: auto;
+        }
+
+        .carrito-pequeño h3, .carrito-grande h3 {
+            margin: 0;
+        }
+
+        #carrito-lista {
+            display: none;
+        }
+
+        .carrito-grande #carrito-lista {
+            display: block;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        /* Ocultar la sección "Nosotros" por defecto */
+        #nosotros {
+            display: none;
+        }
+
+        .boton-whatsapp {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #25d366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aureajewelrygt</h1>
+
+        <!-- Barra de navegación -->
+        <nav>
+            <ul>
+                <li><a onclick="mostrarProductos('accesorios')">ACCESORIOS</a></li>
+                <li><a onclick="mostrarProductos('joyeria')">JOYERÍA</a></li>
+                <li><a onclick="mostrarSeccionNosotros()">NOSOTROS</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mensaje de envíos gratis -->
+        <div class="envio-gratis">
+            El método de pago varía por el sector donde se encuentre
+        </div>
+    </header>
+
+    <!-- Sección de Productos -->
+    <section id="productos">
+        <h2>Nuestros Productos</h2>
+        <div class="productos-grid" id="productos-grid">
+            <div class="producto" data-categoria="joyeria">
+                <img src="miamor.jfif" alt="Collar Elegante">
+                <h3>Collar Elegante</h3>
+                <p>$25.00</p>
+                <button onclick="añadirAlCarrito('Collar Elegante', 25)">Añadir al Carrito</button>
+            </div>
+            <div class="producto" data-categoria="joyeria">
+                <img src="miamor.jfif" alt="Pulsera de Perlas">
+                <h3>Pulsera de Perlas</h3>
+                <p>$18.00</p>
+                <button onclick="añadirAlCarrito('Pulsera de Perlas', 18)">Añadir al Carrito</button>
+            </div>
+            <div class="producto" data-categoria="joyeria">
+                <img src="miamor.jfif" alt="Anillo de Plata">
+                <h3>Anillo de Plata</h3>
+                <p>$35.00</p>
+                <button onclick="añadirAlCarrito('Anillo de Plata', 35)">Añadir al Carrito</button>
+            </div>
+            <div class="producto" data-categoria="joyeria">
+                <img src="miamor.jfif" alt="Aretes Dorados">
+                <h3>Aretes Dorados</h3>
+                <p>$15.00</p>
+                <button onclick="añadirAlCarrito('Aretes Dorados', 15)">Añadir al Carrito</button>
+            </div>
+            <div class="producto" data-categoria="joyeria">
+                <img src="miamor.jfif" alt="Collar de Plata">
+                <h3>Collar de Plata</h3>
+                <p>$30.00</p>
+                <button onclick="añadirAlCarrito('Collar de Plata', 30)">Añadir al Carrito</button>
+            </div>
+            <div class="producto" data-categoria="accesorios">
+                <img src="miamor.jfif" alt="Pulsera de Cuero">
+                <h3>Pulsera de Cuero</h3>
+                <p>$20.00</p>
+                <button onclick="añadirAlCarrito('Pulsera de Cuero', 20)">Añadir al Carrito</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de "Nosotros" -->
+    <section id="nosotros">
+        <h2>Nosotros</h2>
+        <p>Aureajewelrygt es una tienda dedicada a ofrecer los mejores accesorios y joyería de calidad. Nos enorgullecemos de ofrecer productos únicos y elegantes para nuestros clientes. Nuestro objetivo es brindar una experiencia de compra excepcional, combinando moda, estilo y accesibilidad.</p>
+    </section>
+
+    <div class="carrito-pequeño" id="carrito" onclick="toggleCarrito()">
+        <h3>Carrito</h3>
+        <ul id="carrito-lista"></ul>
+        <p>Total: $<span id="total-carrito">0</span></p>
+    </div>
+
+    <button class="boton-whatsapp" onclick="enviarPorWhatsApp()">Enviar pedido por WhatsApp</button>
+
+    <footer>
+        <p>© 2024 Tienda de Accesorios</p>
+    </footer>
+
+    <script>
+        // Array para almacenar los productos en el carrito
+        let carrito = [];
+        let total = 0;
+
+        function añadirAlCarrito(producto, precio) {
+            carrito.push({ producto, precio });
+            total += precio;
+
+            const carritoLista = document.getElementById('carrito-lista');
+            const nuevoElemento = document.createElement('li');
+            nuevoElemento.textContent = `${producto} - $${precio}`;
+            carritoLista.appendChild(nuevoElemento);
+
+            document.getElementById('total-carrito').textContent = total;
+
+            document.getElementById('carrito').classList.add('carrito-grande');
+        }
+
+        function toggleCarrito() {
+            const carritoElemento = document.getElementById('carrito');
+            carritoElemento.classList.toggle('carrito-grande');
+        }
+
+        function mostrarProductos(categoria) {
+            const productos = document.querySelectorAll('.producto');
+            productos.forEach(producto => {
+                if (producto.getAttribute('data-categoria') === categoria) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+            document.getElementById('nosotros').style.display = 'none';
+            document.getElementById('productos').style.display = 'block';
+        }
+
+        function mostrarSeccionNosotros() {
+            document.getElementById('productos').style.display = 'none';
+            document.getElementById('nosotros').style.display = 'block';
+        }
+
+        // Enviar los productos por WhatsApp
+        function enviarPorWhatsApp() {
+            const telefono = "50212345678"; // Cambia esto por tu número de WhatsApp
+            let mensaje = "Productos seleccionados:\n";
+            carrito.forEach(item => {
+                mensaje += `${item.producto} - $${item.precio}\n`;
+            });
+            mensaje += `Total: $${total}`;
+            const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+
+</body>
+</html>
