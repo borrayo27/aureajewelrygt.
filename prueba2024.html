@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style3.css">
+    <title>AUREAJEWELRYGT</title>
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #000000;
+        }
+
+        header h1 {
+            color: white;
+        }
+
+        /* Estilo de la barra de navegación */
+        nav {
+            background-color: #fff;
+            border-bottom: 2px solid black;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav ul li {
+            padding: 10px 15px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover {
+            color: blue;
+        }
+
+        /* Mensaje de envíos gratis */
+        .envio-gratis {
+            background-color: beige;
+            color: black;
+            text-align: center;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        #productos, #nosotros {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .producto {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Estilo del botón del carrito */
+        .carrito-boton {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: transparent; /* Fondo transparente */
+            border: none;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .carrito-boton img {
+            width: 100%; /* Ajusta la imagen para que ocupe el botón */
+            height: auto;
+        }
+
+        /* Ocultar la sección "Nosotros" por defecto */
+        #nosotros {
+            display: none;
+        }
+
+        /* Estilos para el carrusel */
+        #carrusel-imagenes {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            max-height: 400px; /* Ajusta la altura máxima del carrusel */
+        }
+
+        .carrusel-imagen {
+            min-width: 100%;
+            transition: transform 0.5s ease;
+            max-width: 100%; /* Ajusta el ancho máximo de las imágenes */
+            object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
+        }
+
+        /* Estilos para los botones de navegación */
+        .boton-navegacion {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            margin: 5px;
+            z-index: 1; /* Asegura que los botones estén sobre las imágenes */
+        }
+
+        .boton-navegacion.left {
+            left: 10px; /* Espaciado desde el borde izquierdo */
+        }
+
+        .boton-navegacion.right {
+            right: 10px; /* Espaciado desde el borde derecho */
+        }
+
+        .boton-whatsapp {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #25d366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        /* Estilo del carrito flotante */
+        #carrito {
+            position: fixed;
+            top: 70px; /* Justo debajo del botón del carrito */
+            right: 10px; /* Alineado con el botón del carrito */
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Asegura que esté encima de otros elementos */
+            width: 300px;
+            display: none; /* Se mostrará al hacer clic */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aureajewelrygt</h1>
+
+        <!-- Barra de navegación -->
+        <nav>
+            <ul>
+                <li><a onclick="mostrarProductos('accesorios')">ACCESORIOS</a></li>
+                <li><a onclick="mostrarProductos('joyeria')">JOYERÍA</a></li>
+                <li><a onclick="mostrarSeccionNosotros()">NOSOTROS</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mensaje de envíos gratis -->
+        <div class="envio-gratis">
+            El método de pago varía por el sector donde se encuentre
+        </div>
+    </header>
+
+    <!-- Carrusel de imágenes -->
+    <div id="carrusel-imagenes">
+        <img src="1.jpg" alt="Imagen 1" class="carrusel-imagen">
+        <img src="1.jpg" alt="Imagen 2" class="carrusel-imagen">
+    </div>
+    <button class="boton-navegacion left" onclick="cambiarImagen(-1)">◀</button>
+    <button class="boton-navegacion right" onclick="cambiarImagen(1)">▶</button>
+    
+    <!-- Sección de Productos -->
+    <section id="productos">
+        <h2>Nuestros Productos</h2>
+        <div class="productos-grid" id="productos-grid">
+            <!-- Productos van aquí -->
+        </div>
+    </section>
+
+    <!-- Sección Nosotros -->
+    <section id="nosotros">
+        <h2>Sobre Nosotros</h2>
+        <p>Somos AureaJewelryGT, dedicados a ofrecerte las mejores piezas de joyería y accesorios de alta calidad.</p>
+        <p>Nuestra misión es brindarte una experiencia única con productos que resaltan tu estilo y personalidad.</p>
+    </section>
+
+    <!-- Carrito flotante -->
+    <div id="carrito">
+        <h3>Carrito</h3>
+        <ul id="carrito-items"></ul>
+        <p>Total: $<span id="carrito-total">0.00</span></p>
+        <button class="boton-whatsapp" onclick="abrirWhatsApp()">Contactar por WhatsApp</button>
+        <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+    </div>
+
+    <!-- Botón del carrito -->
+    <button class="carrito-boton" onclick="mostrarCarrito()">
+        <img src="bolsaa.jpg" alt="Carrito de compras">
+    </button>
+
+    <footer>
+        <p>&copy; 2023 AureaJewelryGT. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Variable para controlar la imagen actual en el carrusel
+        let indiceImagen = 0;
+
+        // Cambiar imagen del carrusel
+        function cambiarImagen(direccion) {
+            const imagenes = document.querySelectorAll('.carrusel-imagen');
+            indiceImagen = (indiceImagen + direccion + imagenes.length) % imagenes.length;
+            imagenes.forEach((img, idx) => {
+                img.style.transform = `translateX(${(idx - indiceImagen) * 100}%)`;
+            });
+        }
+
+        // Función para abrir WhatsApp con un mensaje predefinido
+        function abrirWhatsApp() {
+            const telefono = "50259221427"; // Coloca el número de teléfono de contacto aquí
+            const mensaje = encodeURIComponent("¡Hola! Me gustaría obtener más información sobre sus productos.");
+            const url = `https://wa.me/${telefono}?text=${mensaje}`;
+            window.open(url, '_blank');
+        }
+
+        // Función para añadir productos al carrito
+        const carrito = [];
+        function añadirAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio });
+            actualizarCarrito();
+        }
+
+        // Mostrar u ocultar el carrito
+        function mostrarCarrito() {
+            const carritoElemento = document.getElementById('carrito');
+            carritoElemento.style.display = carritoElemento.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Actualizar el carrito con los productos añadidos
+        function actualizarCarrito() {
+            const carritoItems = document.getElementById('carrito-items');
+            const carritoTotal = document.getElementById('carrito-total');
+            carritoItems.innerHTML = '';
+            let total = 0;
+            carrito.forEach(producto => {
+                const li = document.createElement('li');
+                li.textContent = `${producto.nombre} - $${producto.precio.toFixed(2)}`;
+                carritoItems.appendChild(li);
+                total += producto.precio;
+            });
+            carritoTotal.textContent = total.toFixed(2);
+        }
+
+        // Vaciar el carrito
+        function vaciarCarrito() {
+            carrito.length = 0;
+            actualizarCarrito();
+        }
+
+        // Función para mostrar la sección de productos según la categoría
+        function mostrarProductos(categoria) {
+            const productosGrid = document.getElementById('productos-grid');
+            productosGrid.innerHTML = ''; // Limpiar productos previos
+            let productos = [];
+            if (categoria === 'accesorios') {
+                productos = [
+                    { nombre: 'Pulsera de Cuero', precio: 15.99, imagen: '1.jpg' },
+                    { nombre: 'Collar de Plata', precio: 29.99, imagen: '1.jpg' }
+                ];
+            } else if (categoria === 'joyeria') {
+                productos = [
+                    { nombre: 'Anillo de Oro', precio: 199.99, imagen: '1.jpg' },
+                    { nombre: 'Aretes de Diamantes', precio: 499.99, imagen: '1.jpg' }
+                ];
+            }
+            productos.forEach(producto => {
+                const div = document.createElement('div');
+                div.classList.add('producto');
+                div.innerHTML = `
+                    <img src="${producto.imagen}" alt="${producto.nombre}">
+                    <h3>${producto.nombre}</h3>
+                    <p>Precio: $${producto.precio.toFixed(2)}</p>
+                    <button onclick="añadirAlCarrito('${producto.nombre}', ${producto.precio})">Añadir al Carrito</button>
+                `;
+                productosGrid.appendChild(div);
+            });
+        }
+
+        // Función para mostrar la sección "Nosotros"
+        function mostrarSeccionNosotros() {
+            document.getElementById('productos').style.display = 'none';
+            document.getElementById('nosotros').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
